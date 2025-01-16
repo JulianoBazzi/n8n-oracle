@@ -3,7 +3,7 @@ run-name: Build and deploy docker image on dockerhub
 
 on: [push, workflow_dispatch]
 jobs:
-    build_base_job:
+    build_job:
       runs-on: ubuntu-latest
 
       steps:
@@ -17,7 +17,7 @@ jobs:
               password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
           - name: Build n8n-oracle
-            run: docker build -t n8n-oracle .
+            run: docker build -t n8n-oracle Docker/.
   
           - name: Push n8n-oracle
             run: |
