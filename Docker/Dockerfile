@@ -1,8 +1,17 @@
 FROM ubuntu:latest
 
+# Set n8n environment type ('dev' or 'stable'). It differs the logo shown in the UI.
+ENV N8N_RELEASE_TYPE='stable'
+
+# Update and install dependencies
 RUN apt update -y && apt upgrade -y && \
     apt install wget libaio1t64 nodejs npm alien -y && \
     npm install n8n@latest oracledb -g
+
+# Create a node user
+RUN addgroup --gid 1001 node && \
+    adduser --uid 1001 --ingroup node --shell /bin/sh --disabled-password --gecos "" node && \
+    export GNUPGHOME="$(mktemp -d)"
 
 WORKDIR /tmp
 
@@ -18,6 +27,8 @@ RUN ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/lib
 RUN rm oracle-instantclient-basic-linuxx64.rpm
 
 WORKDIR /app
+
+USER node
 
 EXPOSE 5678:5678
 
