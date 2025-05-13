@@ -3,11 +3,12 @@ FROM ubuntu:latest
 # Set n8n environment type ('dev' or 'stable'). It differs the logo shown in the UI.
 ENV N8N_RELEASE_TYPE='stable'
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+ENV N8N_RUNNERS_ENABLED=true
 
 # Update and install dependencies
 RUN apt update -y && apt upgrade -y && \
     apt install wget libaio1t64 nodejs npm alien -y && \
-    npm install n8n@latest oracledb -g
+    npm install n8n oracledb -g
 
 # Create a node user
 RUN addgroup --gid 1001 node && \
