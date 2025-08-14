@@ -7,8 +7,14 @@ ENV N8N_RUNNERS_ENABLED=true
 
 # Update and install dependencies
 RUN apt update -y && apt upgrade -y && \
-    apt install wget libaio1t64 nodejs npm alien -y && \
-    npm install n8n oracledb -g
+    apt install wget libaio1t64 curl alien -y
+
+# Install Node.js 22 LTS using NodeSource repository
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y nodejs
+
+# Install n8n and oracledb globally
+RUN npm install n8n oracledb -g
 
 # Create a node user
 RUN addgroup --gid 1001 node && \
