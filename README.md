@@ -34,6 +34,8 @@ n8n-credentials
 ```
 
 ## Easypanel - Environment Variables
+```bash
 WEBHOOK_URL=https://seu-dominio.com
 N8N_HOST=seu-dominio.com
 N8N_PROTOCOL=https
+```
