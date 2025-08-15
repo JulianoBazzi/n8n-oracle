@@ -32,3 +32,8 @@ n8n-workflows
 n8n-credentials
 /home/node/.n8n/credentials
 ```
+
+## Easypanel - Environment Variables
+WEBHOOK_URL=https://seu-dominio.com
+N8N_HOST=seu-dominio.com
+N8N_PROTOCOL=https
